@@ -90,19 +90,19 @@
         (list (format "* %s %s"
                       (upcase-initials (alist-get 'current_state story))
                       (alist-get 'name story))
-              "  :PROPERTIES:"
-              (format "  :ID: %s" (alist-get 'id story))
-              (format "  :Type: %s" (upcase-initials (alist-get 'story_type story)))
-              (format "  :Points: %s" (alist-get 'estimate story))
-              (format "  :Updated: %s" (alist-get 'updated_at story))
-              (format "  :URL: %s" (alist-get 'url story))
-              (format "  :Description: %s" (alist-get 'description story))
-              (format "  :Labels: %s" (string-join
+              ":PROPERTIES:"
+              (format ":ID: %s" (alist-get 'id story))
+              (format ":Type: %s" (upcase-initials (alist-get 'story_type story)))
+              (format ":Points: %s" (alist-get 'estimate story))
+              (format ":Updated: %s" (alist-get 'updated_at story))
+              (format ":URL: %s" (alist-get 'url story))
+              (format ":Description: %s" (alist-get 'description story))
+              (format ":Labels: %s" (string-join
                                      (-map (lambda (label) (format "\"%s\""(alist-get 'name label)))
                                            (alist-get 'labels story))
                                      " "))
-              "  :END:
-")))
+              ":END:"))
+  (org-indent-drawer))
 
 (defun org-pivotal--update-buffer-with-stories (stories)
   "Update org buffer with STORIES."
