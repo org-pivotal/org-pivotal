@@ -44,6 +44,12 @@
   (apply 'concat org-pivotal-api--base-url
          (-map (lambda (part) (concat "/" part)) parts-of-url)))
 
+(fset 'org-pivotal--api-error-handler
+      '(cl-function
+        (lambda
+          (&rest args &key &key data error-thrown &allow-other-keys)
+          (message "Error: %S %s" error-thrown data))))
+
 (defun org-pivotal-api--call (url method &optional query data)
   "Access wrapper for the Pivotal (v5) JSON API.
 URL of the API endpoint
@@ -61,6 +67,7 @@ DATA data."
                                 :params query
                                 :parser 'json-read
                                 :sync t
+                                :error org-pivotal--api-error-handler
                                 :type method)))
            url method query data))
 

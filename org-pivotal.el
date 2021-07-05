@@ -123,12 +123,34 @@
            (org-entry-get (point) "project-id" t)
            (org-entry-get (point) "filter" t)))
 
+(defun org-pivotal--property-exists (property)
+  (and property
+       (or
+        (numberp property)
+        (not (s-equals? property "")))))
+
 (defun org-pivotal--convert-headline-to-story (properties)
   "Convert headline's PROPERTIES to story."
-  (list (cons "id" (a-get properties "ID"))
-        (cons "name" (a-get properties "ITEM"))
-        (cons "current_state" (a-get properties "TODO"))
-        (cons "description" (a-get properties "DESCRIPTION"))))
+  (let
+      ((id (a-get properties "ID"))
+       (name (a-get properties "ITEM"))
+       (type (a-get properties "TYPE"))
+       (todo (a-get properties "TODO"))
+       (estimate (a-get properties "POINTS"))
+       (labels (a-get properties "LABELS"))
+       (description (a-get properties "DESCRIPTION")))
+    (-filter (lambda (cell) (cdr cell))
+             (list (cons "id" id)
+                   (cons "name" name)
+                   (cons "story_type" type)
+                   (cons "current_state" todo)
+                   (cons "estimate" (if (org-pivotal--property-exists estimate)
+                                        (string-to-number estimate)
+                                      nil))
+                   (cons "labels" (if (org-pivotal--property-exists labels)
+                                      (vconcat (s-split " " labels))
+                                    nil))
+                   (cons "description" description)))))
 
 ;;;###autoload
 (defun org-pivotal-push-story ()
