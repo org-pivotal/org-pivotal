@@ -2,7 +2,6 @@
 [[https://circleci.com/gh/org-pivotal/org-pivotal/tree/master][https://circleci.com/gh/org-pivotal/org-pivotal/tree/master.svg?style=svg]]
 [[https://coveralls.io/github/org-pivotal/org-pivotal?branch=master][https://coveralls.io/repos/github/org-pivotal/org-pivotal/badge.svg?branch=master]]
 [[https://www.gnu.org/licenses/gpl-3.0][https://img.shields.io/badge/License-GPL%20v3-blue.svg]]
-[[http://hits.dwyl.io/org-pivotal/org-pivotal][http://hits.dwyl.io/org-pivotal/org-pivotal.svg]]
 [[https://github.com/org-pivotal/org-pivotal/graphs/commit-activity][https://img.shields.io/badge/Maintained%3F-yes-green.svg]]
 [[http://makeapullrequest.com][https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square]]
 
