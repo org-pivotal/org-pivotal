@@ -6,7 +6,7 @@ jobs:
       version:
         type: string
     docker:
-      - image: silex/emacs:<< parameters.version >>-alpine
+      - image: silex/emacs:<< parameters.version >>-alpine-ci
     steps:
       - checkout
       - run:
